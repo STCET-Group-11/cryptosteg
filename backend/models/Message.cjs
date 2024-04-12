@@ -8,5 +8,5 @@ const messageSchema = new mongoose.Schema({
 
 const Message = mongoose.model('Message', messageSchema);
 
-module.exports = Message; // Use CommonJS exports
+module.exports = Message;
 

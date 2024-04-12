@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import crypto from 'crypto-js';
+import Spacecrypt from 'spacecrypt';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -8,8 +9,7 @@ import TextField from '@mui/material/TextField';
 import './App.css'
 import { Paper } from '@mui/material';
 import Container from '@mui/material/Container';
-
-
+ 
 const updatedDataFalse = {
   flag: 'false',
 };
@@ -87,10 +87,18 @@ function ChatInterface() {
       const fetchedMessages = response.data.map((message) => {
         if(message._id!= messageId)
         try {
-          const bytes1 = crypto.RabbitLegacy.decrypt(message.content, secretKey);
+
+          //steganalysis
+          const decodedMessage = Spacecrypt.decrypt(message.content);
+          //steganalysis ends
+
+          const bytes1 = crypto.RabbitLegacy.decrypt(decodedMessage, secretKey);
           const decryptedMessage1 = bytes1.toString(crypto.enc.Utf8);
           const bytes = crypto.AES.decrypt(decryptedMessage1, secretKey);
           const decryptedMessage = bytes.toString(crypto.enc.Utf8);
+
+
+
           if (decryptedMessage) {
             return decryptedMessage;
           }
@@ -100,7 +108,6 @@ function ChatInterface() {
           return null;
         }
       });setMessages(fetchedMessages.filter(Boolean));
-       // Remove null messages
     } catch (error) {
       console.error('Error fetching messages:', error);
     }
@@ -109,15 +116,22 @@ function ChatInterface() {
 
   const sendMessage = async () => {
     if (inputMessage.trim() !== '') {
-      console.log('Input message:', inputMessage); // Add this line
+      console.log('Input message:', inputMessage); 
+      
+
+
       const encryptedMessage = crypto.AES.encrypt(inputMessage, secretKey).toString();
       const encryptedMessage1 = crypto.RabbitLegacy.encrypt(encryptedMessage, secretKey).toString();
+       console.log(encryptedMessage1);
+
       // stego
-      
-      //
+      const publicMessage = 'world'
+      const encodedMessage = Spacecrypt.encrypt(publicMessage, encryptedMessage1);
+      //stego end
+
       try {
-        console.log('Sending data:', { content: encryptedMessage1 }); // Add this line
-        await axios.post(Url, { content: encryptedMessage1 });
+        console.log('Sending data:', { content: encodedMessage}); 
+        await axios.post(Url, { content: encodedMessage});
         setInputMessage('');
         updateFlagTrue();
       } catch (error) {
