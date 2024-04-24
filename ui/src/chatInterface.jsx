@@ -144,7 +144,7 @@ function ChatInterface() {
     <div className="prime">
       <div className="chat-interface">
         <div className="message-container">
-          <Container maxWidth="sm">
+          <Container maxWidth="lg">
             <Paper elevation={3} style={{paddingTop: 10, paddingBottom: 10, paddingLeft: 10, paddingRight: 10}}>
                 {messages.map((message, index) => (
                   <div key={index} className="message">
@@ -154,28 +154,26 @@ function ChatInterface() {
                 ))}
                 <div ref={messagesEndRef}>&nbsp;</div>
               
-              <div className="input-container">
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '50ch' },
-                  }}
-                  noValidate
-                  autoComplete="off">
-                  <TextField id="standard-basic" label="Type Message" variant="standard" sx={{
-                  "& fieldset": { paddingBottom:10 ,border: 'none' },}}
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)} />
-                </Box>
-              </div>
-                <div className="Buuton">
-                  <Box textAlign={'center'}>
-                  <Button variant="contained" sx={{paddingBlock:1.2 ,fontSize: 15}} endIcon={<SendIcon />} onClick={sendMessage}>Send</Button>
-                  </Box>
-                </div>
             </Paper>
           </Container>
         </div>
+        <div className="input-container" >                
+          <Container maxWidth="xl">
+                <Paper elevation={3} style={{paddingTop: 10, paddingBottom: 10, paddingLeft: 10, paddingRight: 10}}
+                  noValidate
+                  autoComplete="off">
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+                    <TextField id="standard-basic" label="Type Message" variant="standard" sx={{
+                    "& fieldset": { paddingBottom:10 ,border: 'none' },width: '100%',}}
+                    value={inputMessage}
+                    onChange={(e) => setInputMessage(e.target.value)} />
+                    <Button variant="contained" endIcon={<SendIcon />} onClick={sendMessage} style={{ marginLeft: 10 }}>
+                    Send
+                    </Button>
+                  </div>
+                </Paper>
+            </Container>
+          </div>
       </div>
     </div>
   );

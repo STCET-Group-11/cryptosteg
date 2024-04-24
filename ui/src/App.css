@@ -3,9 +3,11 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #e6e4e4;
+  /* background-image: url(ui\src\img\bckg.jpg); */
   color: #333;
   padding-top: 1%;
   padding-bottom: 1%;
+  overflow: hidden;
 }
 
 .app-container {  
@@ -27,6 +29,23 @@ h1 {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  height: 500px; /* Set a fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: thin; /* For non-WebKit browsers, makes the scrollbar thinner */
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1); /* Customizes the scrollbar color */
+}
+
+.message-container::-webkit-scrollbar {
+  width: 8px; /* Scrollbar width */
+}
+
+.message-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* Scrollbar thumb color */
+  border-radius: 4px; /* Optional: Rounds the corners of the scrollbar thumb */
+}
+
+.message-container::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1); /* Scrollbar track color */
 }
 
 .message {
@@ -40,23 +59,35 @@ h1 {
 
 
 .input-container {
+  /* margin-left: 20px;
+  display: absolute;
+  margin-top: 20px; */
+  /* width: 40%;
+  position: absolute;
+  bottom: 5%;
+  border-radius: 8px;
+  left: 50%;
+  transform: translateX(-50%); */
+  width: 100%; /* Update width for responsiveness */
   display: flex;
-  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 input[type="text"] {
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
+  /* width: calc(100% - 40px); Set the width to match the container box */
 }
 
 button {
-  padding: 10px 20px;
+  padding: 1px 2px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -65,10 +96,10 @@ button:hover {
   background-color: #0056b3;
 }
 
-.Buuton{
-  padding-top: 5%;
-  justify-content: center;
-}
+/* .Buuton{
+  /* padding-top: 5%;
+  justify-content: center; */
+
 
 .prime{
   justify-content: center;
