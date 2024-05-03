@@ -2,21 +2,72 @@ body {
   justify-content: center;
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #e6e4e4;
-  /* background-image: url(ui\src\img\bckg.jpg); */
-  color: #333;
+  /* background-color: #FFFAF4; */
+  /* background: url("../src/img/background.png"); */
+  color: #222222;
   padding-top: 1%;
   padding-bottom: 1%;
   overflow: hidden;
+
+  /* overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    --s: 37px;
+
+    --c: #F2EFE5, #F2EFE5 0.5deg 119.5deg, #0000 120deg;
+    --g1: conic-gradient(from 60deg at 56.25% calc(425% / 6), var(--c));
+    --g2: conic-gradient(from 180deg at 43.75% calc(425% / 6), var(--c));
+    --g3: conic-gradient(from -60deg at 50% calc(175% / 12), var(--c));
+    background: var(--g1), var(--g1) var(--s) calc(1.73 * var(--s)), var(--g2),
+        var(--g2) var(--s) calc(1.73 * var(--s)), var(--g3) var(--s) 0,
+        var(--g3) 0 calc(1.73 * var(--s)) #E3E1D9;
+    background-size: calc(2 * var(--s)) calc(3.46 * var(--s)); */
+}
+.container {
+  /* Basic dimensions and centering */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #DDD5CD; /* Fallback for browsers that don't support gradients */
+  background: linear-gradient(
+    135deg,
+    #DDD5CD 25%,
+    #D3C9BF 25%,
+    #D3C9BF 50%,
+    #DDD5CD 50%,
+    #DDD5CD 75%,
+    #D3C9BF 75%,
+    #D3C9BF
+  );
+  background-size: 40px 40px;
+
+  /* Animation */
+  animation: move 4s linear infinite;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
 }
 
 .app-container {  
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #ebe4da;
+  /* background-color: #dbd1c6; */
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -45,11 +96,11 @@ h1 {
 }
 
 .message-container::-webkit-scrollbar-track {
-  background-color: rgba(0, 0, 0, 0.1); /* Scrollbar track color */
+  background-color: rgba(59, 56, 56, 0.527); /* Scrollbar track color */
 }
 
 .message {
-  background-color: #f2f2f2;
+  background-color: #F8F0E5;
   padding: 10px;
   margin: 10px 0;
   border-radius: 8px;
@@ -68,10 +119,11 @@ h1 {
   border-radius: 8px;
   left: 50%;
   transform: translateX(-50%); */
-  width: 100%; /* Update width for responsiveness */
+  width: 98.5%; /* Update width for responsiveness */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 2%;
 }
 
 input[type="text"] {
@@ -82,9 +134,9 @@ input[type="text"] {
   /* width: calc(100% - 40px); Set the width to match the container box */
 }
 
-button {
+Button {
   padding: 1px 2px;
-  background-color: #007bff;
+  background-color: #849ab1dc;
   color: white;
   border: none;
   border-radius: 30px;

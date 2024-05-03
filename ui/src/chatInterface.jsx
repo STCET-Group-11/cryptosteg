@@ -145,7 +145,7 @@ function ChatInterface() {
       <div className="chat-interface">
         <div className="message-container">
           <Container maxWidth="lg">
-            <Paper elevation={3} style={{paddingTop: 10, paddingBottom: 10, paddingLeft: 10, paddingRight: 10}}>
+            <Paper elevation={3} style={{paddingTop: 10, paddingBottom: 10, paddingLeft: 10, paddingRight: 10, backgroundColor: '#EDE8E3'}}>
                 {messages.map((message, index) => (
                   <div key={index} className="message">
                     <span>{index}: </span>
@@ -159,15 +159,15 @@ function ChatInterface() {
         </div>
         <div className="input-container" >                
           <Container maxWidth="xl">
-                <Paper elevation={3} style={{paddingTop: 10, paddingBottom: 10, paddingLeft: 10, paddingRight: 10}}
+                <Paper elevation={3} style={{paddingTop: 10, paddingBottom: 10, paddingLeft: 10, paddingRight: 10, backgroundColor: '#EDE8E3'}}
                   noValidate
                   autoComplete="off">
                   <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
-                    <TextField id="standard-basic" label="Type Message" variant="standard" sx={{
+                    <TextField id="standard-basic" label="" paddingTop="5" variant="standard" sx={{
                     "& fieldset": { paddingBottom:10 ,border: 'none' },width: '100%',}}
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)} />
-                    <Button variant="contained" endIcon={<SendIcon />} onClick={sendMessage} style={{ marginLeft: 10 }}>
+                    <Button variant="contained" endIcon={<SendIcon />} onClick={sendMessage} style={{ marginLeft: 10, marginTop: 0, backgroundColor: '#A79277'}}>
                     Send
                     </Button>
                   </div>
