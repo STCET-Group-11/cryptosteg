@@ -186,7 +186,7 @@ button:hover {
 
 .auth-container button {
   width: 75px; /* Reduced button width */
-  padding: 8px 10px 12px; /* Padding adjusted to lift the button upwards */
+  padding: 10px;
   background-color: #8b4513; /* Dark brown button */
   color: #fff;
   border: none;
