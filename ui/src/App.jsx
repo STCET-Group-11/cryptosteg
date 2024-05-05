@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import ChatInterface from './chatInterface'; // Correct the import path
+import OTPAuth from './OTPAuth';
+import ChatInterface from './chatInterface'; 
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  // Function to handle authentication status change
+  const handleAuthentication = (isAuthenticated) => {
+    setAuthenticated(isAuthenticated);
+  };
+
   return (
     <div className="app-container">
       <h1>Chat App</h1>
-      <ChatInterface />
+      {authenticated ? <ChatInterface /> : <OTPAuth onAuthentication={handleAuthentication} />}
     </div>
   );
 }
 
 export default App;
+

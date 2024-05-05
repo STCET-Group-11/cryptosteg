@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto-js');
 const Message = require('./models/Message.cjs');
 const Query = require('./models/Query.cjs');
+const AuthUser = require('./models/AuthUser.cjs');
 const app = express();
+const nodemailer = require('nodemailer');
 const PORT = process.env.PORT || 3001;
 
 
@@ -89,6 +91,84 @@ app.post('/messages', async (req, res) => {
     res.status(500).json({ error: 'Error saving message' });
   }
 });
+
+app.post('/send-otp', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Check if the email is already authenticated
+    const existingUser = await AuthUser.findOne({ email });
+    if (existingUser) {
+      // Generate OTP
+      const otp = generateOTP();
+
+      // Store OTP in the database
+      existingUser.otp = otp;
+      existingUser.otpExpiry = new Date(Date.now() + 360000);
+      await existingUser.save();
+
+      // Send OTP to the email
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'grp11.majorproject@gmail.com',
+          pass: 'qdukxefjvrndwkhs'
+        }
+      });
+
+      const mailOptions = {
+        from: 'grp11.majorproject@gmail.com',
+        to: email,
+        subject: 'OTP for authentication',
+        text: `Your OTP is: ${otp}`
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      res.json({ success: true, message: 'OTP sent successfully' });
+    } else {
+      res.status(400).json({ success: false, message: 'Email not authorized' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+// Endpoint for verifying OTP
+app.post('/verify-otp', async (req, res) => {
+  const { email, otp } = req.body;
+
+  try {
+    const user = await AuthUser.findOne({ email, otp, otpExpiry: { $gt: new Date() } });
+    if (user) {
+      // Clear OTP and OTP expiry in the database
+      user.otp = undefined;
+      user.otpExpiry = undefined;
+      await user.save();
+
+      res.json({ success: true, message: 'OTP verified successfully' });
+    } else {
+      res.json({ success: false, message: 'Invalid OTP' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+// Generate a random alphanumeric OTP
+function generateOTP() {
+  const length = 6;
+  const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let OTP = '';
+  for (let i = 0; i < length; i++) {
+    OTP += charset.charAt(Math.floor(Math.random() * charset.length));
+  }
+  return OTP;
+}
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

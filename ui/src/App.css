@@ -48,7 +48,7 @@ body {
   background-size: 40px 40px;
 
   /* Animation */
-  animation: move 4s linear infinite;
+  /*animation: move 4s linear infinite;*/
 }
 
 @keyframes move {
