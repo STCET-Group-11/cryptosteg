@@ -156,3 +156,66 @@ button:hover {
 .prime{
   justify-content: center;
 }
+
+/* Authentication UI*/
+
+.auth-container {
+  background-color: #f4eee8; /* Light brown shade */
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px; /* Increased width */
+  margin: 0 auto;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.auth-container h2 {
+  color: #8b4513; /* Dark brown for heading */
+  margin-bottom: 20px;
+}
+
+.auth-container input[type="email"],
+.auth-container input[type="text"] {
+  width: calc(100% - 85px); /* Adjusted width for text fields */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #8b4513; /* Dark brown border */
+  border-radius: 5px;
+  background-color: #fff; /* White background */
+  color: #2b1607;
+}
+
+.auth-container button {
+  width: 75px; /* Reduced button width */
+  padding: 8px 10px 12px; /* Padding adjusted to lift the button upwards */
+  background-color: #8b4513; /* Dark brown button */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 11px;  
+}
+
+.auth-container button:hover {
+  background-color: #654321; /* Darker brown on hover */
+}
+
+.auth-container p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-container input[type="email"],
+.input-container input[type="text"] {
+  flex: 1;
+}
+
+.input-container button {
+  margin-left: 10px;
+}

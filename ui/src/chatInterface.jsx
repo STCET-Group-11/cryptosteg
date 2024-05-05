@@ -157,7 +157,7 @@ function ChatInterface() {
             </Paper>
           </Container>
         </div>
-        <div className="input-container" >                
+        <div className="input-container">                
           <Container maxWidth="xl">
                 <Paper elevation={3} style={{paddingTop: 10, paddingBottom: 10, paddingLeft: 10, paddingRight: 10, backgroundColor: '#EDE8E3'}}
                   noValidate
