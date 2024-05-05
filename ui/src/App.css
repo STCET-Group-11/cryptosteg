@@ -110,15 +110,6 @@ h1 {
 
 
 .input-container {
-  /* margin-left: 20px;
-  display: absolute;
-  margin-top: 20px; */
-  /* width: 40%;
-  position: absolute;
-  bottom: 5%;
-  border-radius: 8px;
-  left: 50%;
-  transform: translateX(-50%); */
   width: 98.5%; /* Update width for responsiveness */
   display: flex;
   align-items: center;
@@ -147,11 +138,6 @@ Button {
 button:hover {
   background-color: #0056b3;
 }
-
-/* .Buuton{
-  /* padding-top: 5%;
-  justify-content: center; */
-
 
 .prime{
   justify-content: center;
